@@ -1,0 +1,57 @@
+import { useGlobalContext } from "./context";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+
+const Categories = () => {
+  const url = "https://api.chucknorris.io/jokes/random?category=";
+  const { category } = useGlobalContext();
+  const [categorize, setCategorize] = useState("");
+  const [joke, setJoke] = useState([]);
+
+  const fetchCategory = async (url) => {
+    try {
+      const response = await axios(url);
+      const data = response.data;
+      setJoke(data);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    fetchCategory(`${url}${categorize.item}`);
+  }, [categorize]);
+
+  const { categories, created_at, value, id } = joke;
+
+  return (
+    <div>
+      <div>
+        <img
+          src="https://api.chucknorris.io/img/chucknorris_logo_coloured_small@2x.png"
+          alt=""
+        />
+      </div>
+
+      {category.map((item) => {
+        return (
+          <button className="btn" onClick={() => setCategorize({ item })}>
+            {item}
+          </button>
+        );
+      })}
+      <div className="card">
+        <h2>Category: {categories}</h2>
+        <h2>Joke: {value}</h2>
+        <h2>Created: {created_at}</h2>
+      </div>
+
+      <div>
+        <Link to="/" className="btn">
+          back home
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+export default Categories;
