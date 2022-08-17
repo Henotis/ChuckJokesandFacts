@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -12,6 +12,10 @@ const Home = () => {
       setRandomJoke(data);
     } catch (error) {}
   };
+
+  useEffect(() => {
+    fetchRandomNorris(url)
+  }, [])
 
   const { categories, created_at, value } = randomJoke;
 
