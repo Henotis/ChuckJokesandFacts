@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Categories = () => {
   const url = "https://api.chucknorris.io/jokes/random?category=";
   const { category } = useGlobalContext();
-  const [categorize, setCategorize] = useState("");
+  const [categorize, setCategorize] = useState("animal");
   const [joke, setJoke] = useState([]);
 
   const fetchCategory = async (url) => {
@@ -32,9 +32,9 @@ const Categories = () => {
         />
       </div>
 
-      {category.map((item) => {
+      {category.map((item, index) => {
         return (
-          <button className="btn" onClick={() => setCategorize({ item })}>
+          <button className="btn" onClick={() => setCategorize({ item })} key={index}>
             {item}
           </button>
         );
