@@ -22,7 +22,7 @@ const Categories = () => {
     fetchCategory(`${url}${categorize}`);
   }, [categorize]);
 
-  const { categories, created_at, value, id } = joke;
+  const { categories, created_at, value} = joke;
 
   return (
     <div>

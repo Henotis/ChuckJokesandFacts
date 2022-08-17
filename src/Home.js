@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Categories from "./Categories";
-
-import { useGlobalContext } from "./context";
 
 const Home = () => {
   const url = "https://api.chucknorris.io/jokes/random";
@@ -16,7 +13,7 @@ const Home = () => {
     } catch (error) {}
   };
 
-  const { categories, created_at, id, updated_at, value } = randomJoke;
+  const { categories, created_at, value } = randomJoke;
 
   return (
     <article>
