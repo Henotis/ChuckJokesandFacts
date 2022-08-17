@@ -1,12 +1,12 @@
 import { useGlobalContext } from "./context";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Categories = () => {
   const url = "https://api.chucknorris.io/jokes/random?category=";
   const { category } = useGlobalContext();
-  const [categorize, setCategorize] = useState("animal");
+//   const [categorize, setCategorize] = useState("animal");
 
   const [joke, setJoke] = useState([]);
 
@@ -18,9 +18,9 @@ const Categories = () => {
     } catch (error) {}
   };
 
-  useEffect(() => {
-    fetchCategory(`${url}${categorize}`);
-  }, [categorize]);
+//   useEffect(() => {
+//     fetchCategory(`${url}${categorize}`);
+//   }, [categorize]);
 
   const { categories, created_at, value} = joke;
 
@@ -35,7 +35,7 @@ const Categories = () => {
 
       {category.map((item, index) => {
         return (
-          <button className="btn" onClick={() => setCategorize(item)} key={index}>
+          <button className="btn" onClick={() => fetchCategory(`${url}${item}`)} key={index}>
             {item}
           </button>
         );
