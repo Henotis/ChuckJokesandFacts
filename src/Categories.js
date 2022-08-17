@@ -7,6 +7,7 @@ const Categories = () => {
   const url = "https://api.chucknorris.io/jokes/random?category=";
   const { category } = useGlobalContext();
   const [categorize, setCategorize] = useState("animal");
+
   const [joke, setJoke] = useState([]);
 
   const fetchCategory = async (url) => {
@@ -18,7 +19,7 @@ const Categories = () => {
   };
 
   useEffect(() => {
-    fetchCategory(`${url}${categorize.item}`);
+    fetchCategory(`${url}${categorize}`);
   }, [categorize]);
 
   const { categories, created_at, value, id } = joke;
@@ -34,7 +35,7 @@ const Categories = () => {
 
       {category.map((item, index) => {
         return (
-          <button className="btn" onClick={() => setCategorize({ item })} key={index}>
+          <button className="btn" onClick={() => setCategorize(item)} key={index}>
             {item}
           </button>
         );
